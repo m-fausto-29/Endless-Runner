@@ -32,16 +32,16 @@ class Tutorial extends Phaser.Scene{
 
         //this is to try to test the scrolling vertical
         this.plain_road = this.add.image(640, 700, 'plain_road').setScrollFactor(0,0);
-        const camera = this.cameras.main
+        const camera = this.cameras.main;
         camera.postFX.addTiltShift(0.9, 2.0, 0.4);
 
-        this.tweens.add({
-            targets: camera,
-            scrollY: 1800,
-            duration: 20000,
-            yoyo: true,
-            loop: -1
-        });
+        // this.tweens.add({
+        //     targets: camera,
+        //     scrollY: 1800,
+        //     duration: 20000,
+        //     //yoyo: true,
+        //     //loop: -1
+        // });
 
         //green UI background
         //this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
