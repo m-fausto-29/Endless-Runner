@@ -23,6 +23,7 @@ class Menu extends Phaser.Scene{
             game.settings = {
                 gameTimer: 60000
             }
+            this.scene.start('tutorialScene');
         }
     }
     
