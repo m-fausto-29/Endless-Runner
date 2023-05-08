@@ -166,6 +166,23 @@ class Play extends Phaser.Scene{
         }
     }
 
+    spawnPitchfork(multiplier) {
+        let [startingX, direction] = randomSide();
+        let startingY = randomRange(-(game.config.height / 5), game.config / 5);
+        // second arg must be true to add object to display list
+        this.obstacles.add(new Pitchfork(this, startingX, startingY, 'pitchfork', 0, this.obstacleSpeed * direction, multiplier), true);
+    }
+
+    spawnTree(){
+        //trash will spawn at the top near the player's x position
+        let startingX = randomRange(this.player.x - (game.config.width / 5), this.player.x + (game.config.width / 5));
+        // limit x position to within game bounds
+        startingX = Math.min(Math.max(startingX, game.config.width* (1 / 15)), game.config.width - game.config.width * (1 / 15));
+        this.obstacles.add(new Tree(this, startingX, 75, 'tree', 0), true);
+    }
+
+
+
 
 
 }
