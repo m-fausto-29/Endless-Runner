@@ -27,7 +27,7 @@ class Play extends Phaser.Scene{
         // create simple cursor input
         cursors = this.input.keyboard.createCursorKeys();
 
-        // WASD keys
+        // init WASD keys
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
@@ -96,6 +96,76 @@ class Play extends Phaser.Scene{
 
         this.player.anims.play('run');
     }
+
+    update(time, delta){
+
+
+        if(!this.gameOver){
+            this.player.setVelocity(0);
+           
+
+
+            //starting speed 
+            this.scrollingField.tilePositionY -= this.scrollSpeed * (delta / 1000); // normalize scroll speed to pixels per second
+            this.centerDistance += (this.scrollSpeed * (delta / 1000) / (game.config / 10)); // total distance the screen has scrolled
+
+
+            //increasing challenge
+            if(this.centerDistance > this.startNextWave) {
+                // obstacles appear a little more frequently and move a little faster
+                this.startNextWave += 50;
+                this.obstacleSpawnDelay *= 0.975;
+                // increase speed up to 600 then start increasing obstacle spawning rate
+                if(this.scrollSpeed < 600){
+                    this.obstacleSpawnTimer = this.obstacleSpawnDelay;
+                    switch(randomInt(3)){
+                        case 0:
+                            this.spawnPitchfork(this.obstacleSpeedMultiplier);
+                            break;
+                        case 1:
+                            this.spawnTree();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+
+                // score dispplay
+                this.p1Score = Math.floor(this.centerDistance);
+                this.scoreLeft.text = 'Current Score: ' + this.p1Score;
+
+
+                // adding cursor controls
+                let playerMoveX = 0;
+                let playerMoveY = 0;
+                if(cursors.left.isDown || keyA.isDown) {
+                    playerMoveX -= 1;
+                }
+                if(cursors.right.isDown || keyD.isDown) {
+                    playerMoveX += 1;
+                }
+                if(cursors.up.isDown || keyW.isDown){
+                    playerMoveY -= 1;
+                }
+                if(cursors.down.isDown || keyS.isDown) {
+                    playerMoveY += 1;
+                }
+                this.player.setVelocity(playerMoveX * this.playerVelocity);
+                this.player.setVelocity(playerMoveY * this.playerVelocity);
+            }
+            if(this.gameOver && Phaser.Input.Keyboard.JustDown(KeyR)) {
+                this.scene.restart();
+            }
+        }
+
+
+        // check key input for restart
+        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
+            this.scene.restart();
+        }
+    }
+
 
 
 }
