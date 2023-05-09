@@ -14,6 +14,7 @@ class Play extends Phaser.Scene{
         });
         this.load.image('pitchfork', 'assets/pitchfork.png');
         this.load.image('tree', 'assets/tree.png');
+        this.load.image('gameover', 'assets/gameover.png');
     }
 
     create(){
@@ -179,6 +180,32 @@ class Play extends Phaser.Scene{
         // limit x position to within game bounds
         startingX = Math.min(Math.max(startingX, game.config.width* (1 / 15)), game.config.width - game.config.width * (1 / 15));
         this.obstacles.add(new Tree(this, startingX, 75, 'tree', 0), true);
+    }
+
+    setGameOver(){
+        this.player.stop();
+        this.gameOver = true;
+        this.player.disableBody();
+        tries += 1;
+        let highScoreColor = '#FFFFFF';
+        if(this.p1Score > highScore) {
+            highScore = this.p1Score;
+            highScoreColor = '#00FF00';
+        }
+
+        this.time.delayedCall(2000, () => {
+            let gameoverConfig = {
+                fontFamily: 'Stencil Std, fantasy',
+                fontSize: '100px',
+                color: '#FFFFFF',
+                align: 'right',
+                padding: {
+                    top: 5,
+                    bottom: 5,
+                },
+            }
+            this.gameoverScreen = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'gameover')
+        })
     }
 
 
