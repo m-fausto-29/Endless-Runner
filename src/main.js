@@ -1,7 +1,7 @@
 //main file
 
 let cursors;
-let keyUP, keyJ, keySPACE, keyW, keyA, keyS, keyD, keyR;
+let keyUP, keyJ, keyENTER, keyW, keyA, keyS, keyD, keyR;
 
 let config = {
     type: Phaser.AUTO,
