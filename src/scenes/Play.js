@@ -3,7 +3,7 @@ let highScore = 0;
 let tries = 0;
 class Play extends Phaser.Scene{
     constructor(){
-        super("Play");
+        super('Play');
     }
     preload(){
         //load images/tile sprites
@@ -180,9 +180,6 @@ class Play extends Phaser.Scene{
         startingX = Math.min(Math.max(startingX, game.config.width* (1 / 15)), game.config.width - game.config.width * (1 / 15));
         this.obstacles.add(new Tree(this, startingX, 75, 'tree', 0), true);
     }
-
-
-
 
 
 }
