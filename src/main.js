@@ -6,7 +6,7 @@ let keyUP, keyJ, keyENTER, keyW, keyA, keyS, keyD, keyR;
 let config = {
     type: Phaser.AUTO,
     width: 600,
-    height: 600,
+    height: 700,
     physics: {
         default: 'arcade',
         arcade: {

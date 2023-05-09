@@ -8,7 +8,7 @@ class Play extends Phaser.Scene{
     preload(){
         //load images/tile sprites
         this.load.image('plain_road', 'assets/plain_road.png');
-        this.load.spritesheet('witch', 'assets/witch.png',{
+        this.load.spritesheet('witch', 'assets/test-sprite.png',{
             frameWidth: 49,
             frameHeight: 77,
         });
@@ -220,8 +220,28 @@ class Play extends Phaser.Scene{
             this.add.text(game.config.width / 2, game.config.height + 100, 'Total Runs: ' + tries, gameoverConfig)
                 .setOrigin(0.5)
                 .setDepth(1);
-        })
+            gameoverConfig.fontSize = '45px';
+            this.add.text(game.config.width / 2, game.config.height - 75, 'Press (R) to Restart', gameoverConfig)
+                .setOrigin(0.5)
+                .setDepth(1);
+        });
     }
+}
 
+function randomSide() {
+    if(Math.random() >= 0.5) {
+        return [-10,1];
+    } else{
+        return [game.config.width + 10, -1];
+    }
+}
 
+function randomRange(min, max) {
+    let range = max-min;
+    let val = Math.random() * range;
+    return val + min;
+}
+
+function randomInt(max) {
+    return Math.floor(Math.random() * max);
 }
