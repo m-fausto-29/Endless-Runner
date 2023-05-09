@@ -205,6 +205,21 @@ class Play extends Phaser.Scene{
                 },
             }
             this.gameoverScreen = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'gameover')
+                .setOrigin(0,0)
+                .setDepth(1);
+            gameoverConfig.fontSize = '70px';
+            this.add.text(game.config.width /2, game.config.height / 2 - 75, 'Score: ' + this.p1Score, gameoverConfig)
+                .setOrigin(0.5)
+                .setDepth(1);
+            gameoverConfig.fontSize = '50px';
+            gameoverConfig.color = highScoreColor;
+            this.add.text(game.config.width / 2, game.config.height / 2, 'High Score: ' + highScore, gameoverConfig)
+                .setOrigin(0.5)
+                .setDepth(1);
+            gameoverConfig.color = '#FFFFFF';
+            this.add.text(game.config.width / 2, game.config.height + 100, 'Total Runs: ' + tries, gameoverConfig)
+                .setOrigin(0.5)
+                .setDepth(1);
         })
     }
 
