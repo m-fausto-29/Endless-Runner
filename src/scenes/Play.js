@@ -76,7 +76,7 @@ class Play extends Phaser.Scene{
             },
         }
         this.p1Score = 0;
-        this.scoreLeft = this.add.text(0, 0, 'Score: ' + this.p1Score, scoreConfig);
+        this.scoreLeft = this.add.text(0, 0, 'Current Score: ' + this.p1Score, scoreConfig);
         this.scoreLeft.setDepth(1)
 
 
@@ -155,7 +155,7 @@ class Play extends Phaser.Scene{
             this.scene.restart();
         }
     }
-    // put a defender on the screen with given horizontal speed coming from a random side of the screen
+    // put a pitchfork on the screen with given horizontal speed coming from a random side of the screen
     spawnPitchfork(multiplier) {
         let [startingX, direction] = randomSide();
         let startingY = randomRange(- (game.config.height / 5), game.config.height / 5);
@@ -163,7 +163,7 @@ class Play extends Phaser.Scene{
         this.obstacles.add(new Pitchfork(this, startingX, startingY, 'pitchfork', 0, this.obstacleSpeed * direction, multiplier), true); 
     }
     spawnTree() {
-        // trash will spawn at the top near the player's x position
+        // tree will spawn at the top near the player's x position
         let startingX = randomRange(this.player.x - (game.config.width / 5), this.player.x + (game.config.width / 5));
         // limit x position to within game bounds
         startingX = Math.min(Math.max(startingX, game.config.width * (1 / 15)), game.config.width - game.config.width * (1 / 15));

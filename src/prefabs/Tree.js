@@ -4,8 +4,8 @@ class Tree extends Phaser.GameObjects.Sprite{
         super(scene, x, y, texture, frame);
         this.worldScene = scene;
         scene.physics.add.existing(this);
-        this.displayWidth = game.config.width * (1/15);
-        this.displayHeight = game.config.height * (2/15);
+        this.displayWidth = game.config.width * (2/15);
+        this.displayHeight = game.config.height * (4/15);
     }
 
     update(){

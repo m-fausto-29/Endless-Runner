@@ -6,8 +6,8 @@ class Pitchfork extends Phaser.GameObjects.Sprite{
         this.speed = speed;
         this.multiplier = multiplier;
         scene.physics.add.existing(this);
-        this.displayWidth = game.config.width * (2/15);
-        this.displayHeight = game.config.height * (4/15);
+        this.displayWidth = game.config.width * (1/15);
+        this.displayHeight = game.config.height * (2/15);
     }
 
     update(){
