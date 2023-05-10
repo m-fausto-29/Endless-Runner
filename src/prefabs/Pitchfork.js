@@ -1,6 +1,6 @@
 //adding pitchfork class
 class Pitchfork extends Phaser.GameObjects.Sprite{
-    constructor(scene, x, y, texture, frame, multiplier){
+    constructor(scene, x, y, texture, frame, speed, multiplier){
         super(scene, x, y, texture, frame);
         this.worldScene = scene;
         this.speed = speed;
