@@ -15,10 +15,12 @@ class Play extends Phaser.Scene{
         this.load.image('pitchfork', 'assets/pitchfork.png');
         this.load.image('tree', 'assets/tree.png');
         this.load.image('gameover', 'assets/gameover.png');
+        this.load.image('display', 'assets/scoreDisplay.png');
     }
 
     create() {
         this.scrollingField = this.add.tileSprite(0, 0, 0, 0, 'plain_road').setOrigin(0, 0);
+        this.display = this.add.tileSprite(0,0,0,0, 'display').setOrigin(0,0);
         this.playerVelocity = game.config.height / 2
         this.scrollSpeed = game.config.height / 2;
 
@@ -62,9 +64,9 @@ class Play extends Phaser.Scene{
 
         // display score
         let scoreConfig = {
-            fontFamily: 'Stencil Std, fantasy',
+            fontFamily: 'Spectral',
             fontSize: '56px',
-            strokeThickness: 4,
+            strokeThickness: 2,
             stroke: '013220',
             color: '#FFFFFF',
             align: 'right',
@@ -190,7 +192,7 @@ class Play extends Phaser.Scene{
         this.time.delayedCall(2000, () => {
             //game over display
             let gameoverConfig = {
-                fontFamily: 'Stencil Std, fantasy',
+                fontFamily: 'Spectral',
                 fontSize: '100px',
                 color: '#FFFFFF',
                 align: 'right',
