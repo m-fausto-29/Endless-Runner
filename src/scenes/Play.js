@@ -83,8 +83,8 @@ class Play extends Phaser.Scene{
         // scale difficulty through multiple waves based on distance traveled
         this.obstacleSpeed = 300;    // pitchforks start at 300
         this.obstacleSpeedMultiplier = 1;
-        this.startNextWave = 50; // starting at 50 yards
-        this.obstacleSpawnDelay = 4000; // initial time between obstacles appearing in ms
+        this.startNextWave = 50; // starting at 50
+        this.obstacleSpawnDelay = 2000; // initial time between obstacles appearing in ms
         this.obstacleSpawnTimer = this.obstacleSpawnDelay;
 
         this.player.anims.play('run');
