@@ -1,16 +1,16 @@
-class Menu extends Phaser.Scene {
+class Tutorial extends Phaser.Scene {
     constructor(){
-        super("menuScene");
+        super("tutorial");
     }
     preload(){
-        this.load.image('title', './assets/title.png');
+        this.load.image('tutorial', './assets/tutorialpage.png');
     }
 
     create(){
         this.cameras.main.setBackgroundColor('#99E550');
 
         // adding title screen
-        this.title = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'title').setOrigin(0, 0);
+        this.title = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'tutorial').setOrigin(0, 0);
 
         // defining keys
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
@@ -18,7 +18,7 @@ class Menu extends Phaser.Scene {
 
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyENTER)){
-            this.scene.start('tutorial');
+            this.scene.start('Play');
         }
     }
 }
