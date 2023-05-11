@@ -20,7 +20,8 @@ class Play extends Phaser.Scene{
 
     create() {
         this.scrollingField = this.add.tileSprite(0, 0, 0, 0, 'plain_road').setOrigin(0, 0);
-        this.display = this.add.tileSprite(0,0,0,0, 'display').setOrigin(0,0);
+        this.display = this.add.tileSprite(0,0,0,0, 'display').setOrigin(0,0)
+            .setDepth(1);
         this.playerVelocity = game.config.height / 2
         this.scrollSpeed = game.config.height / 2;
 
@@ -73,7 +74,7 @@ class Play extends Phaser.Scene{
         }
         this.p1Score = 0;
         this.scoreLeft = this.add.text(0, 0, 'Current Score: ' + this.p1Score, scoreConfig);
-        this.scoreLeft.setDepth(1)
+        this.scoreLeft.setDepth(1.5)
 
 
         // scale difficulty through multiple waves based on distance traveled
@@ -156,14 +157,16 @@ class Play extends Phaser.Scene{
         let [startingX, direction] = randomSide();
         let startingY = randomRange(- (game.config.height / 5), game.config.height / 5);
         //second arg must be true to add object to display list i guess
-        this.obstacles.add(new Pitchfork(this, startingX, startingY, 'pitchfork', 0, this.obstacleSpeed * direction, multiplier), true); 
+        this.obstacles.add(new Pitchfork(this, startingX, startingY, 'pitchfork', 0, this.obstacleSpeed * direction, multiplier), true)
+            .setDepth(0.5); 
     }
     spawnTree() {
         // tree will spawn at the top near the player's x position
         let startingX = randomRange(this.player.x - (game.config.width / 5), this.player.x + (game.config.width / 5));
         // limit x position to within game bounds
         startingX = Math.min(Math.max(startingX, game.config.width * (1 / 15)), game.config.width - game.config.width * (1 / 15));
-        this.obstacles.add(new Tree(this, startingX, 75, 'tree', 0), true);
+        this.obstacles.add(new Tree(this, startingX, 75, 'tree', 0), true)
+            .setDepth(0.5);
     }
 
     setGameOver() {
@@ -200,29 +203,29 @@ class Play extends Phaser.Scene{
 
             this.gameoverScreen = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'gameover')
                 .setOrigin(0, 0)
-                .setDepth(1);
+                .setDepth(1.5);
             this.add.text(game.config.width / 2, game.config.height / 6, 'GAME OVER', gameoverConfig)
                 .setOrigin(0.5)
-                .setDepth(1);
+                .setDepth(1.5);
             gameoverConfig.fontSize = '70px';
             this.add.text(game.config.width / 2, game.config.height / 2 - 75, 'Score: ' + this.p1Score, gameoverConfig)
                 .setOrigin(0.5)
-                .setDepth(1);
+                .setDepth(1.5);
 
             gameoverConfig.fontSize = '50px';
             gameoverConfig.color = highScoreColor;
             this.add.text(game.config.width / 2, game.config.height / 2, 'High Score: ' + highScore, gameoverConfig)
                 .setOrigin(0.5)
-                .setDepth(1);
+                .setDepth(1.5);
             
             gameoverConfig.color = '#FFFFFF'
             this.add.text(game.config.width / 2, game.config.height / 2 + 100, 'Total Runs: ' + tries, gameoverConfig)   
                 .setOrigin(0.5)
-                .setDepth(1);
+                .setDepth(1.5);
             gameoverConfig.fontSize = '45px';
             this.add.text(game.config.width / 2, game.config.height - 75, 'Press (R) to Restart', gameoverConfig)
                 .setOrigin(0.5)
-                .setDepth(1);
+                .setDepth(1.5);
 
         });
     }
