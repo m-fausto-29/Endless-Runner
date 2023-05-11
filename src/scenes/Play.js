@@ -112,7 +112,7 @@ class Play extends Phaser.Scene{
             this.obstacleSpawnTimer -= delta;
             if (this.obstacleSpawnTimer <= 0) {
                 this.obstacleSpawnTimer = this.obstacleSpawnDelay;
-                switch(randomInt(2)){
+                switch(Math.floor(Math.random() * 2)){
                     case 0:
                         this.spawnPitchfork(this.obstacleSpeedMultiplier);
                         break;
@@ -154,15 +154,28 @@ class Play extends Phaser.Scene{
     }
     // put a pitchfork on the screen with given horizontal speed coming from a random side of the screen
     spawnPitchfork(multiplier) {
-        let [startingX, direction] = randomSide();
-        let startingY = randomRange(- (game.config.height / 5), game.config.height / 5);
+        let x = 0;
+        let d = 0;
+        if (Math.random() >= 0.5) {
+            x = -10;
+            d = 1;
+        } else {
+            x = game.config.width + 10;
+            d = -1;
+        }
+        let [startingX, direction] = [x, d];
+        let range = (game.config.height / 5) - (-(game.config.height / 5));
+        let val = Math.random() * range;
+        let startingY = val + (-(game.config.height / 5));
         //second arg must be true to add object to display list i guess
         this.obstacles.add(new Pitchfork(this, startingX, startingY, 'pitchfork', 0, this.obstacleSpeed * direction, multiplier), true)
             .setDepth(0.5); 
     }
     spawnTree() {
         // tree will spawn at the top near the player's x position
-        let startingX = randomRange(this.player.x - (game.config.width / 5), this.player.x + (game.config.width / 5));
+        let range = (this.player.x + (game.config.width / 5)) - (this.player.x - (game.config.width / 5));
+        let val = Math.random() * range;
+        let startingX = val + (this.player.x - (game.config.width / 5));
         // limit x position to within game bounds
         startingX = Math.min(Math.max(startingX, game.config.width * (1 / 15)), game.config.width - game.config.width * (1 / 15));
         this.obstacles.add(new Tree(this, startingX, 75, 'tree', 0), true)
@@ -231,21 +244,9 @@ class Play extends Phaser.Scene{
     }
 }
 
-function randomSide() {
-    if (Math.random() >= 0.5) {
-        return [-10, 1];
-    } else {
-        return [game.config.width + 10, -1];
-    }
-}
-
-// get a random value in the range (works for negatives)
-function randomRange(min, max) {
-    let range = max - min;
-    let val = Math.random() * range
-    return val + min;
-}
-
-function randomInt(max) {
-    return Math.floor(Math.random() * max)
-}
+// get a random value in the range
+// function randomRange(min, max) {
+//     let range = max - min;
+//     let val = Math.random() * range
+//     return val + min;
+// }
