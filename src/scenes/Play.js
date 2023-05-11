@@ -26,11 +26,7 @@ class Play extends Phaser.Scene{
 
         // create simple cursor input
         cursors = this.input.keyboard.createCursorKeys();
-        // init WASD KEYS
-        keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-        keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-        keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        // init 'R' for reset
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
 
         // physics sprite
@@ -134,16 +130,16 @@ class Play extends Phaser.Scene{
             // polling controls
             let playerMoveX = 0;
             let playerMoveY = 0;
-            if (cursors.left.isDown || keyA.isDown) {
+            if (cursors.left.isDown) {
                 playerMoveX -= 1;
             }
-            if (cursors.right.isDown || keyD.isDown) {
+            if (cursors.right.isDown) {
                 playerMoveX += 1;
             }
-            if (cursors.up.isDown || keyW.isDown) {
+            if (cursors.up.isDown) {
                 playerMoveY -= 1;
             } 
-            if (cursors.down.isDown || keyS.isDown) {
+            if (cursors.down.isDown) {
                 playerMoveY += 1;
             }
 
