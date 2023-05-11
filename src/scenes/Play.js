@@ -16,6 +16,13 @@ class Play extends Phaser.Scene{
         this.load.image('tree', 'assets/tree.png');
         this.load.image('gameover', 'assets/gameover.png');
         this.load.image('display', 'assets/scoreDisplay.png');
+
+        // Loading SFX
+        this.load.audio('magic', 'assets/magic_sfx.wav');
+        this.load.audio('grunt', 'assets/female_grunt.wav'); 
+        this.load.audio('end', 'assets/gameover.wav');
+        // Loading BGM
+        this.load.audio('play_bgm', 'assets/play_bgm.wav'); 
     }
 
     create() {
@@ -86,7 +93,16 @@ class Play extends Phaser.Scene{
         this.obstacleSpawnDelay = 2000; // initial time between obstacles appearing in ms
         this.obstacleSpawnTimer = this.obstacleSpawnDelay;
 
+        //this.player.anims.play('run'); //remove this when testing the audio below
+
+        //startup sounds
+        this.bgm = this.sound.add('play_bgm');
+        this.bgm.setLoop(true);
+
         this.player.anims.play('run');
+        this.sound.play('magic');
+        this.time.delayedCall(1000, () => {
+            this.bgm.play();})
     }
 
     update(time, delta){
@@ -184,6 +200,8 @@ class Play extends Phaser.Scene{
     }
 
     setGameOver() {
+        this.bgm.stop();
+        this.sound.play('grunt');
         this.player.stop();
         this.gameOver = true;
         this.player.disableBody();
@@ -241,13 +259,9 @@ class Play extends Phaser.Scene{
                 .setOrigin(0.5)
                 .setDepth(1.5);
 
+            this.sound.play('end');
+
         });
     }
 }
 
-// get a random value in the range
-// function randomRange(min, max) {
-//     let range = max - min;
-//     let val = Math.random() * range
-//     return val + min;
-// }
