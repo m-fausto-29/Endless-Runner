@@ -36,6 +36,8 @@ class Play extends Phaser.Scene{
             .setScale(game.config.width / 800, game.config.height / 800)
             .setDepth(0.5);
         // scale sprite such that it is always the same relative to screen size
+        this.player.body.setSize(20, 30); //adjusting the bounding box size for player
+        this.player.setDepth(0.6)
         this.player.displayWidth = game.config.width / 10;
         this.player.displayHeight = game.config.height / 5;
         this.player.setCollideWorldBounds(true);
@@ -167,7 +169,6 @@ class Play extends Phaser.Scene{
         let range = (game.config.height / 5) - (-(game.config.height / 5));
         let val = Math.random() * range;
         let startingY = val + (-(game.config.height / 5));
-        //second arg must be true to add object to display list i guess
         this.obstacles.add(new Pitchfork(this, startingX, startingY, 'pitchfork', 0, this.obstacleSpeed * direction, multiplier), true)
             .setDepth(0.5); 
     }
