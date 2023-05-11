@@ -1,7 +1,7 @@
 //main file
 
 let cursors;
-let keyUP, keyJ, keyENTER, keyR;
+let keyUP, keyC, keyENTER, keyR;
 
 let config = {
     type: Phaser.AUTO,
@@ -13,6 +13,6 @@ let config = {
             debug: false,
         }
     },
-    scene: [ Menu, Play, Tutorial ] 
+    scene: [ Menu, Play, Tutorial, Credits ] 
 }
 let game = new Phaser.Game(config);

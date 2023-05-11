@@ -10,7 +10,7 @@ class Tutorial extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#99E550');
 
         // adding title screen
-        this.title = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'tutorial').setOrigin(0, 0);
+        this.tutorialPage = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'tutorial').setOrigin(0, 0);
 
         // defining keys
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);

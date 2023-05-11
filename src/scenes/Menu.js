@@ -14,11 +14,15 @@ class Menu extends Phaser.Scene {
 
         // defining keys
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
+        keyC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
     }
 
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyENTER)){
             this.scene.start('tutorial');
+        }
+        if(Phaser.Input.Keyboard.JustDown(keyC)){
+            this.scene.start('credits');
         }
     }
 }
