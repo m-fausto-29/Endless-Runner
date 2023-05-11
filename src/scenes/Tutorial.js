@@ -3,7 +3,7 @@ class Tutorial extends Phaser.Scene {
         super("tutorial");
     }
     preload(){
-        this.load.image('tutorial', './assets/tutorialpage.png');
+        this.load.image('tutorial', './assets/tutorialpage1.png');
     }
 
     create(){
