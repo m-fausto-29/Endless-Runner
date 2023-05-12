@@ -10,6 +10,7 @@ class Menu extends Phaser.Scene {
 
     create(){
         this.cameras.main.setBackgroundColor('#421278');
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
 
         // adding title screen
         this.title = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'title').setOrigin(0, 0);
