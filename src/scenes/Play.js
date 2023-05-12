@@ -87,7 +87,7 @@ class Play extends Phaser.Scene{
 
 
         // scale difficulty through multiple waves based on distance traveled
-        this.obstacleSpeed = 300;    // pitchforks start at 300
+        this.obstacleSpeed = 300;    // pitchforks start at 300 speed
         this.obstacleSpeedMultiplier = 1;
         this.startNextWave = 50; // starting at 50
         this.obstacleSpawnDelay = 2000; // initial time between obstacles appearing in ms
@@ -98,7 +98,6 @@ class Play extends Phaser.Scene{
         this.bgm.setLoop(true);
 
         this.player.anims.play('run');
-        //this.sound.play('magic');
         this.time.delayedCall(1000, () => {
             this.bgm.play();})
     }
@@ -144,7 +143,7 @@ class Play extends Phaser.Scene{
             this.p1Score = Math.floor(this.centerDistance);
             this.scoreLeft.text = 'Current Score: ' + this.p1Score;
 
-            // polling controls
+            // cursor controls
             let playerMoveX = 0;
             let playerMoveY = 0;
             if (cursors.left.isDown) {
@@ -165,6 +164,7 @@ class Play extends Phaser.Scene{
         }
 
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
+            this.sound.play('magic');
             this.scene.restart();
         }
     }
