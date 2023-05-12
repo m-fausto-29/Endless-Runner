@@ -5,10 +5,13 @@ class Tutorial extends Phaser.Scene {
     preload(){
         this.load.image('tutorial', './assets/tutorialpage1.png');
         this.load.atlas('girl', 'assets/witch_atlas.png', 'assets/witch_atlas.json');
+        // Loading SFX
+        this.load.audio('magic', 'assets/magic_sfx.wav');
     }
 
     create(){
-        this.cameras.main.setBackgroundColor('#99E550');
+        this.cameras.main.setBackgroundColor('#421278');
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
 
         // adding title screen
         this.tutorialPage = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'tutorial').setOrigin(0, 0);
@@ -38,6 +41,7 @@ class Tutorial extends Phaser.Scene {
         this.girl.play('float', true);
         
         if(Phaser.Input.Keyboard.JustDown(keyENTER)){
+            this.sound.play('magic');
             this.scene.start('Play');
         }
     }

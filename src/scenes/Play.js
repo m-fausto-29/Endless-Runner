@@ -100,7 +100,7 @@ class Play extends Phaser.Scene{
         this.bgm.setLoop(true);
 
         this.player.anims.play('run');
-        this.sound.play('magic');
+        //this.sound.play('magic');
         this.time.delayedCall(1000, () => {
             this.bgm.play();})
     }

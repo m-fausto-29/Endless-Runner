@@ -4,10 +4,12 @@ class Menu extends Phaser.Scene {
     }
     preload(){
         this.load.image('title', './assets/title.png');
+        // Loading SFX
+        this.load.audio('magic', 'assets/magic_sfx.wav');
     }
 
     create(){
-        this.cameras.main.setBackgroundColor('#99E550');
+        this.cameras.main.setBackgroundColor('#421278');
 
         // adding title screen
         this.title = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'title').setOrigin(0, 0);
@@ -19,10 +21,22 @@ class Menu extends Phaser.Scene {
 
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyENTER)){
-            this.scene.start('tutorial');
+            this.sound.play('magic');
+            this.cameras.main.fadeOut(1000, 0, 0, 0);
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                this.time.delayedCall(1000, () => {
+                    this.scene.start('tutorial');
+                })
+            });
         }
         if(Phaser.Input.Keyboard.JustDown(keyC)){
-            this.scene.start('credits');
+            this.sound.play('magic');
+            this.cameras.main.fadeOut(1000, 0, 0, 0); //testing fade out feature
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                this.time.delayedCall(1000, () => {
+                    this.scene.start('credits');
+                })
+            });
         }
     }
 }
