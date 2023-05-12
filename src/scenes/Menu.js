@@ -21,7 +21,7 @@ class Menu extends Phaser.Scene {
     }
 
     update(){
-        if(Phaser.Input.Keyboard.JustDown(keyENTER)){
+        if(Phaser.Input.Keyboard.JustDown(keyENTER)){ // transition into tutorial scene with fade out effect
             this.sound.play('magic');
             this.cameras.main.fadeOut(1000, 0, 0, 0);
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
@@ -30,9 +30,9 @@ class Menu extends Phaser.Scene {
                 })
             });
         }
-        if(Phaser.Input.Keyboard.JustDown(keyC)){
+        if(Phaser.Input.Keyboard.JustDown(keyC)){ // transition into credits scene with fade out effect
             this.sound.play('magic');
-            this.cameras.main.fadeOut(1000, 0, 0, 0); //testing fade out feature
+            this.cameras.main.fadeOut(1000, 0, 0, 0);
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                 this.time.delayedCall(1000, () => {
                     this.scene.start('credits');

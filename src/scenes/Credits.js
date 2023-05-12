@@ -20,15 +20,14 @@ class Credits extends Phaser.Scene {
     }
 
     update(){
-        if(Phaser.Input.Keyboard.JustDown(keyENTER)){
+        if(Phaser.Input.Keyboard.JustDown(keyENTER)){ // transition into menu scene with fade out effect
             this.sound.play('magic');
-            this.cameras.main.fadeOut(1000, 0, 0, 0); //testing fade out feature
+            this.cameras.main.fadeOut(1000, 0, 0, 0); 
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                 this.time.delayedCall(1000, () => {
                     this.scene.start('menuScene');
                 })
             });
-            //this.scene.start('menuScene');
         }
     }
 }
