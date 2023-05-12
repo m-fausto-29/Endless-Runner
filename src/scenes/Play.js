@@ -93,8 +93,6 @@ class Play extends Phaser.Scene{
         this.obstacleSpawnDelay = 2000; // initial time between obstacles appearing in ms
         this.obstacleSpawnTimer = this.obstacleSpawnDelay;
 
-        //this.player.anims.play('run'); //remove this when testing the audio below
-
         //startup sounds
         this.bgm = this.sound.add('play_bgm');
         this.bgm.setLoop(true);
@@ -210,7 +208,7 @@ class Play extends Phaser.Scene{
             
             if (this.p1Score > highScore) {
                 highScore = this.p1Score;
-                highScoreColor = '#00FF00';
+                highScoreColor = '#FEE12B';
             }
 
         // delay this part just a bit to make it look like the sprites actually collide
@@ -236,9 +234,6 @@ class Play extends Phaser.Scene{
             this.gameoverScreen = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'gameover')
                 .setOrigin(0, 0)
                 .setDepth(1.5);
-            this.add.text(game.config.width / 2, game.config.height / 6, 'GAME OVER', gameoverConfig)
-                .setOrigin(0.5)
-                .setDepth(1.5);
             gameoverConfig.fontSize = '70px';
             this.add.text(game.config.width / 2, game.config.height / 2 - 75, 'Score: ' + this.p1Score, gameoverConfig)
                 .setOrigin(0.5)
@@ -246,7 +241,7 @@ class Play extends Phaser.Scene{
 
             gameoverConfig.fontSize = '50px';
             gameoverConfig.color = highScoreColor;
-            this.add.text(game.config.width / 2, game.config.height / 2, 'High Score: ' + highScore, gameoverConfig)
+            this.add.text(game.config.width / 2, game.config.height / 1.9, 'High Score: ' + highScore, gameoverConfig)
                 .setOrigin(0.5)
                 .setDepth(1.5);
             
@@ -255,9 +250,6 @@ class Play extends Phaser.Scene{
                 .setOrigin(0.5)
                 .setDepth(1.5);
             gameoverConfig.fontSize = '45px';
-            this.add.text(game.config.width / 2, game.config.height - 75, 'Press (R) to Restart', gameoverConfig)
-                .setOrigin(0.5)
-                .setDepth(1.5);
 
             this.sound.play('end');
 
